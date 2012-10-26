@@ -10,12 +10,31 @@
     this.get = function(url) {
       var self = this;
       this.vent.trigger('location-change', { url: url });
-      var jqxhr = $.getJSON(url, function(resource) {
-        self.vent.trigger('response', { resource: resource });
+      var jqxhr = $.ajax({
+    	  url: url,
+    	  dataType: 'json',
+    	  headers: this.headers(),
+    	  success: function(resource, textStatus, jqXHR) {
+    	        self.vent.trigger('response', { resource: resource, headers: jqXHR.getAllResponseHeaders() });
+    	  }
       }).error(function() {
         self.vent.trigger('fail-response', { jqxhr: jqxhr });
       });
     };
+    
+    this.headers = function() {
+        var header_lines = $('.request_headers').val().split("\n");
+        var headers = {};
+        _.each(header_lines, function(line) {
+          var parts = line.split(':');
+          if (parts.length == 2) {
+            var name = parts[0].trim();
+            var value = parts[1].trim();
+            headers[name] = value;
+          }
+        });
+        return headers;
+      };    
   };
 
   HAL.Router = Backbone.Router.extend({
@@ -167,7 +186,7 @@
       }).render();
 
       d.$el.dialog({
-        title: 'Non Safe Request',
+        title: 'Potentially Non Safe Request',
         width: 500
       });
     },
@@ -240,6 +259,7 @@
 
     showRawResource: function(e) {
       this.$('.panel').html('<pre>' + JSON.stringify(e.resource, null, 2) + '</pre>');
+      this.$('.panel-headers').html('<pre>' + _.escape(e.headers) + '</pre>');
     }
   });
 
@@ -320,6 +340,10 @@
       var self = this;
       var headers = this.headers();
       var method = this.$('.method').val();
+      if (method == 'PATCH') {
+    	  headers['X-HTTP-Method-Override'] = 'PATCH';
+    	  method = 'POST';
+      }
       var body = this.$('.body').val();
       var jqxhr = $.ajax({
         url: this.href,
@@ -328,7 +352,7 @@
         headers: headers,
         data: body
       }).done(function(response) {
-        self.vent.trigger('response', { resource: response });
+        self.vent.trigger('response', { resource: response, headers: jqxhr.getAllResponseHeaders() });
       }).fail(function(response) {
         self.vent.trigger('fail-response', { jqxhr: jqxhr });
       }).always(function() {
@@ -339,11 +363,11 @@
     },
 
     render: function() {
-      this.$el.html(this.template({ href: this.href }));
+      this.$el.html(this.template({ href: this.href, additional_headers: $('.request_headers').val() }));
       return this;
     },
 
-    template: _.template($('#non-safe-request-template').html())
+    template: _.template($('#potentially-non-safe-request-template').html())
   });
 
   var urlRegex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
