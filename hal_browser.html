@@ -22,11 +22,12 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand">The HAL Browser</a>
+          <a class="brand">FoxyCart Hypermedia API</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <!-- <li><a href="#https://admin-luke.foxycart.com/v/1.0.0/api/">Go To Root URI</a></li> -->
+              <li><a href="#https://admin-luke.foxycart.com/v/1.0.0/api/">Go To Root URI</a></li>
               <li><a href="#/">Go To Root URI</a></li>
+              <!-- <li><a href="http://wiki.foxycart.com/v/0.0.0/hypermedia_api">Documentation</a></li> -->
               <li><a href="https://github.com/mikekelly/hal-browser">About The HAL Browser</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -275,8 +276,8 @@ Content-Type: application/json
 
   <script src="hal_browser.js"></script>
   <script>
-    //router = new HAL.Router({ entryPoint: 'https://admin-luke.foxycart.com/v/1.0.0/api/' });
-    router = new HAL.Router({ entryPoint: '/' });
+    router = new HAL.Router({ entryPoint: 'https://admin-luke.foxycart.com/v/1.0.0/api/' });
+    //router = new HAL.Router({ entryPoint: '/' });
     Backbone.history.start();
   </script>
 </body>
