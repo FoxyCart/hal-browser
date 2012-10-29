@@ -258,7 +258,7 @@
     },
 
     showRawResource: function(e) {
-      this.$('.panel').html('<pre>' + JSON.stringify(e.resource, null, 2) + '</pre>');
+      this.$('.panel').html('<pre>' + _.escape(JSON.stringify(e.resource, null, 2)) + '</pre>');
       this.$('.panel-headers').html('<pre>' + _.escape(e.headers) + '</pre>');
     }
   });
