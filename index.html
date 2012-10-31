@@ -72,7 +72,6 @@ d3.json("relationships.php", function(json) {
   //toggle(root.children[1]);
   //toggle(root.children[2]);
   
-  
   // Initialize the display to show a few nodes.
   root.children.forEach(toggleAll);
   // expand store
@@ -95,34 +94,11 @@ d3.json("relationships.php", function(json) {
   toggle(root.children[7].children[9].children[5].children[3]);
   toggle(root.children[7].children[9].children[5].children[3].children[3]);
   // expand coupons
-  toggle(root.children[7].children[11]);
-  toggle(root.children[7].children[11].children[5]);
-  toggle(root.children[7].children[11].children[5].children[2]);
-  toggle(root.children[7].children[11].children[5].children[2].children[5]);
+  toggle(root.children[7].children[12]);
+  toggle(root.children[7].children[12].children[5]);
+  toggle(root.children[7].children[12].children[5].children[2]);
+  toggle(root.children[7].children[12].children[5].children[2].children[5]);
 
-  
-  /*
-  // expand user
-  toggle(root.children[3]);
-  // expand default store
-  toggle(root.children[3].children[2]);
-  // expand attributes
-  toggle(root.children[3].children[2].children[1]);
-  toggle(root.children[3].children[2].children[1].children[5]);
-  // expand customers
-  toggle(root.children[3].children[2].children[4]);
-  toggle(root.children[3].children[2].children[4].children[5]);
-  // expand transactions
-  toggle(root.children[3].children[2].children[6]);
-  toggle(root.children[3].children[2].children[6].children[4]);
-  toggle(root.children[3].children[2].children[6].children[4].children[5]);
-  toggle(root.children[3].children[2].children[6].children[4].children[5].children[3]);
-  toggle(root.children[3].children[2].children[7]);
-  toggle(root.children[3].children[2].children[7].children[5]);
-  toggle(root.children[3].children[2].children[9]);
-  toggle(root.children[3].children[2].children[9].children[5]);
-  toggle(root.children[3].children[2].children[9].children[5].children[2]);
-  */
   update(root);
 });
 

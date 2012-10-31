@@ -69,7 +69,8 @@ function getCustomer() {
                  "children": [
                   {"name": "self"},
                   {"name": "store"},
-                  {"name": "customer"}
+                  {"name": "customer"},
+                  {"name": "customer_addresses"}
                  ]
                 },
                 {
@@ -77,7 +78,8 @@ function getCustomer() {
                  "children": [
                   {"name": "self"},
                   {"name": "store"},
-                  {"name": "customer"}
+                  {"name": "customer"},
+                  {"name": "customer_addresses"}
                  ]
                 },
                 {
@@ -147,7 +149,7 @@ function getProductCategory($multiple = false) {
                        ]
                       },
                       {
-                       "name": "tax_categories",
+                       "name": "tax_product_categories",
                        "children": [
                           {"name": "self"},
                           {"name": "store"},
@@ -157,7 +159,7 @@ function getProductCategory($multiple = false) {
                            "children": [
                               {"name": "self"},
                               {"name": "store"},
-                              {"name": "tax_categories"}
+                              {"name": "tax_product_categories"}
                            ]
                           }
                        ]
@@ -189,7 +191,7 @@ $rels = trim($rels, ",\n");
     {"name": "locales"},
     {"name": "payment_method_gateway_types"},
     {"name": "shipping_methods"},
-    {"name": "shipto_address_types"},
+    {"name": "shipping_address_types"},
     {"name": "countries"},
     {"name": "regions"},
     {"name": "store_versions"},
@@ -409,6 +411,25 @@ $rels = trim($rels, ",\n");
              ]
             },
             {
+             "name": "applied_taxes",
+             "children": [
+              {"name": "self"},
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+              "name": ".. { example entry } ..",
+              "children": [
+                  {"name": "self"},
+                  {"name": "store"},
+                  {"name": "transaction"},
+                  {"name": "tax"}
+                ]
+              }
+             ]
+            },
+            {
              "name": "custom_fields",
              "children": [
               {"name": "self"},
@@ -446,7 +467,50 @@ $rels = trim($rels, ",\n");
                 ]
               }
              ]
-            }
+            },
+            {
+             "name": "shipping_addresses",
+             "children": [
+              {"name": "self"},
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+              "name": ".. { example entry } ..",
+              "children": [
+                  {"name": "self"},
+                  {"name": "store"},
+                  {"name": "custom_fields"},
+                  {"name": "transaction"},
+                  {"name": "shipping_addresses"},
+                  {"name": "customer"},
+                  {"name": "customer_address"}
+                ]
+              }
+             ]
+            },
+            {
+             "name": "billing_addresses",
+             "children": [
+              {"name": "self"},
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+              "name": ".. { example entry } ..",
+              "children": [
+                  {"name": "self"},
+                  {"name": "store"},
+                  {"name": "transaction"},
+                  {"name": "billing_addresses"},
+                  {"name": "customer"},
+                  {"name": "customer_address"}
+                ]
+              }
+             ]
+            }            
            ]
           }  
         ]
@@ -498,11 +562,31 @@ $rels = trim($rels, ",\n");
                 "children": [
                   {"name": "self"},
                   {"name": "store"},
-                  {"name": "tax_categories"}
+                  {"name": "tax_product_categories"}
                 ]
               }        
           ]
-        },      
+        },
+        {
+          "name": "payment_method_sets",
+          "children": [
+              {"name": "self"},
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+                "name": ".. { example entry } ..",
+                "children": [
+                  {"name": "self"},
+                  {"name": "store"},
+                  {"name": "payment_method_sets"},
+                  {"name": "payment_method_gateway"},
+                  {"name": "payment_method_paypal_express"},
+                  {"name": "payment_method_minfraud"}                ]
+              }        
+          ]
+        },
         {
           "name": "coupons",
           "children": [
