@@ -327,7 +327,7 @@ $rels = trim($rels, ",\n");
                       }
                     ]
                    },
-                   {"name":"shipping_address"}
+                   {"name":"shipment"}
                  ]
                 }
                ]
@@ -470,7 +470,7 @@ $rels = trim($rels, ",\n");
              ]
             },
             {
-             "name": "shipping_addresses",
+             "name": "shipments",
              "children": [
               {"name": "self"},
               {"name": "first"},
@@ -485,7 +485,7 @@ $rels = trim($rels, ",\n");
                   {"name": "custom_fields"},
                   {"name": "products"},
                   {"name": "transaction"},
-                  {"name": "shipping_addresses"},
+                  {"name": "shipments"},
                   {"name": "customer"},
                   {"name": "customer_address"}
                 ]
