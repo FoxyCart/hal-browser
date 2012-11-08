@@ -374,7 +374,7 @@ $rels = trim($rels, ",\n");
                    {"name": "store"},
                    {"name": "transaction"},
                    <?php print getProductCategory(); ?>,
-                   {"subscription"},
+                   {"name": "subscription"},
                    {
                    "name": "product_options",
                    "children": [
@@ -396,8 +396,8 @@ $rels = trim($rels, ",\n");
                   }
                 ]
               },
-              {"downloadable_purchase"},
-              {"shipment"}
+              {"name": "downloadable_purchase"},
+              {"name": "shipment"}
              ]
             },
             {

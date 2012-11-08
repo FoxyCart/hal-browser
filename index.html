@@ -7,7 +7,8 @@
 <link rel="stylesheet" media="screen" href="vendor/css/bootstrap.css" />
 <style type="text/css">
 body {
-    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 </style>
 <link rel="stylesheet" media="screen" href="vendor/css/bootstrap-responsive.css" />
@@ -35,6 +36,23 @@ path.link {
     <script src="vendor/js/d3.v2.min.js"></script>
   </head>
   <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand">FoxyCart Hypermedia API</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="https://api-sandbox.foxycart.com/hal-browser/hal_browser.html#/">Go To Root URI</a></li>
+              <li><a href="http://wiki.foxycart.com/v/0.0.0/hypermedia_api">Documentation</a></li>
+              <li class="active"><a href="https://api-sandbox.foxycart.com/hal-browser/">Link Relationships</a></li>
+              <li><a href="https://github.com/mikekelly/hal-browser">About The HAL Browser</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
     <div id="body">
     </div>
     <script type="text/javascript">
@@ -76,28 +94,11 @@ d3.json("relationships.php", function(json) {
   root.children.forEach(toggleAll);
   // expand store
   toggle(root.children[7]);
-  // expand carts
-  toggle(root.children[7].children[5]);
-  toggle(root.children[7].children[5].children[5]);
-  toggle(root.children[7].children[5].children[5].children[5]);
-  toggle(root.children[7].children[5].children[5].children[5].children[5]);
   // expand transactions
   toggle(root.children[7].children[6]);
   toggle(root.children[7].children[6].children[5]);
-  toggle(root.children[7].children[6].children[5].children[4]);
-  // expand subscriptions
-  toggle(root.children[7].children[7]);
-  toggle(root.children[7].children[7].children[5]);
-  // expand product_categories
-  toggle(root.children[7].children[9]);
-  toggle(root.children[7].children[9].children[5]);
-  toggle(root.children[7].children[9].children[5].children[3]);
-  toggle(root.children[7].children[9].children[5].children[3].children[3]);
-  // expand coupons
-  toggle(root.children[7].children[12]);
-  toggle(root.children[7].children[12].children[5]);
-  toggle(root.children[7].children[12].children[5].children[2]);
-  toggle(root.children[7].children[12].children[5].children[2].children[5]);
+  toggle(root.children[7].children[6].children[5].children[6]);
+  toggle(root.children[7].children[6].children[5].children[6].children[5]);
 
   update(root);
 });
@@ -204,22 +205,6 @@ function toggle(d) {
 }
 
     </script>
-
-</head>
-<body>
-<!-- 
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span5">
-                <p>The HAl Browser</p>
-            </div>
-            <div class="span5">
-                <p>FoxyCart Resources and Rels</p>
-            </div>
-        </div>
-    </div>
-  -->
-
     <script
         src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script
@@ -233,3 +218,4 @@ function toggle(d) {
     <script src="vendor/js/bootstrap.js"></script>
 
 </body>
+</html>
