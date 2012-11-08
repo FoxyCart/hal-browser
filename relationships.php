@@ -37,7 +37,8 @@ function getCoupon($multiple = false) {
                               "children": [
                                  {"name": "self"},
                                  {"name": "store"},
-                                 {"name": "coupon"}
+                                 {"name": "coupon"},
+                                 {"name": "coupon_code_transactions"}
                               ]
                           }
                       ]
@@ -138,6 +139,9 @@ function getProductCategory($multiple = false) {
                     "children": [
                       {"name": "self"},
                       {"name": "store"},
+                      {"name": "downloadables"},
+                      {"name": "admin_email_template"},
+                      {"name": "customer_email_template"},
                       {
                        "name": "email_templates",
                        "children": [
@@ -370,7 +374,8 @@ $rels = trim($rels, ",\n");
                    {"name": "store"},
                    {"name": "transaction"},
                    <?php print getProductCategory(); ?>,
-                  {
+                   {"subscription"},
+                   {
                    "name": "product_options",
                    "children": [
                       {"name": "self"},
@@ -390,7 +395,9 @@ $rels = trim($rels, ",\n");
                    ]
                   }
                 ]
-              }
+              },
+              {"downloadable_purchase"},
+              {"shipment"}
              ]
             },
             {
