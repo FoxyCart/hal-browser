@@ -668,6 +668,26 @@ $rels = trim($rels, ",\n");
               {"name": "next"},
               {"name": "last"}
           ]          
+        },
+        {
+          "name": "error_entries",
+          "children": [
+              {"name": "self"},
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+                "name": ".. { example entry } ..",
+                "children": [
+                  {"name": "self"},
+                  {"name": "store"},
+                  {"name": "customer_id"},
+                  {"name": "transaction_id"},
+                  {"name": "subscription_id"}
+                ]
+              }
+          ]          
         }    
     ]
   },
