@@ -184,7 +184,7 @@ $rels = trim($rels, ",\n");
  "children": [
   {"name": "self"},
   {
-  "name": "resources", 
+  "name": "property_helpers", 
    "children": [
     {"name": "self"},
     {"name": "checkout_types"},
