@@ -688,6 +688,25 @@ $rels = trim($rels, ",\n");
                 ]
               }
           ]          
+        },
+        {
+          "name": "downloadables",
+          "children": [
+              {"name": "self"},
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+                "name": ".. { example entry } ..",
+                "children": [
+                  {"name": "self"},
+                  {"name": "store"},
+                  {"name": "product_category"},
+                  {"name": "downloadable_product_categories"}
+                ]
+              }
+          ]          
         }    
     ]
   },
