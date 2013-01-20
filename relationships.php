@@ -707,7 +707,25 @@ $rels = trim($rels, ",\n");
                 ]
               }
           ]          
-        }    
+        },
+        {
+          "name": "language_overrides",
+          "children": [
+              {"name": "self"},
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+                "name": ".. { example entry } ..",
+                "children": [
+                  {"name": "self"},
+                  {"name": "language_overrides"},
+                  {"name": "template_set"}
+                ]
+              }
+          ]          
+        }
     ]
   },
   {
