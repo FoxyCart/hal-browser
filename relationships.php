@@ -172,7 +172,8 @@ function getProductCategory($multiple = false) {
                   }';
 }
 
-include __DIR__ . '/../v/1.0.0/api/includes/rel_values.php';
+include '/srv/foxy/code/hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
+$rel_values = \FoxyCart\Services\LinkRelationsService::$rel_values;
 $rels = '{"name": "self"},' . "\n";
 foreach($rel_values as $rel => $description) {
     $rels .= '{"name": "' . $rel . '"},' . "\n";
