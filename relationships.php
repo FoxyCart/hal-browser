@@ -173,6 +173,7 @@ function getProductCategory($multiple = false) {
 }
 
 include '/srv/foxy/code/hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
+//include '/home/luke/code/hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
 $rel_values = \FoxyCart\Services\LinkRelationsService::$rel_values;
 $rels = '{"name": "self"},' . "\n";
 foreach($rel_values as $rel => $description) {
@@ -194,7 +195,7 @@ $rels = trim($rels, ",\n");
     {"name": "languages"},
     {"name": "language_strings"},
     {"name": "locales"},
-    {"name": "payment_method_gateway_types"},
+    {"name": "payment_gateway_types"},
     {"name": "shipping_methods"},
     {"name": "shipping_address_types"},
     {"name": "countries"},
@@ -244,6 +245,7 @@ $rels = trim($rels, ",\n");
     "children": [
         {"name": "self"},
         <?php print getAttributes('store'); ?>,
+        {"name": "store_versions"},
         {
          "name": "users",
          "children": [
@@ -591,11 +593,69 @@ $rels = trim($rels, ",\n");
                   {"name": "self"},
                   {"name": "store"},
                   {"name": "payment_method_sets"},
-                  {"name": "payment_method_gateway"},
-                  {"name": "payment_method_paypal_express"},
-                  {"name": "payment_method_minfraud"}                ]
+                  {
+                    "name": "payment_gateway",
+                    "children": [
+                        {"name": "self"},
+                        {"name": "store"},
+                        {"name": "payment_method_sets"}
+                    ]
+                  },
+                  {
+                    "name": "payment_method_set_alternate_payment_methods",
+                    "children": [
+                        {"name": "self"},
+                        {"name": "first"},
+                        {"name": "prev"},
+                        {"name": "next"},
+                        {"name": "last"},
+                        {
+                          "name": ".. { example entry } ..",
+                          "children": [
+                              {"name": "self"},
+                              {"name": "store"},
+                              {"name": "payment_method_set"},
+                              {
+                                "name": "alternate_payment_method",
+                                "children": [
+                                  {"name": "self"},
+                                  {"name": "store"},
+                                  {"name": "payment_method_sets"}
+                                ]
+                              }
+                           ]
+                        }
+                    ]
+                  },
+                  {
+                    "name": "payment_method_set_fraud_protections",
+                    "children": [
+                        {"name": "self"},
+                        {"name": "first"},
+                        {"name": "prev"},
+                        {"name": "next"},
+                        {"name": "last"},
+                        {
+                          "name": ".. { example entry } ..",
+                          "children": [
+                              {"name": "self"},
+                              {"name": "store"},
+                              {"name": "payment_method_set"},
+                              {
+                                "name": "fraud_protection",
+                                "children": [
+                                  {"name": "self"},
+                                  {"name": "store"},
+                                  {"name": "payment_method_sets"}
+                                ]
+                              }
+                           ]
+                        }
+                    ]
+                  }
+                ]
               }        
-          ]
+           ]
         },
         {
           "name": "coupons",
@@ -617,7 +677,25 @@ $rels = trim($rels, ",\n");
               <?php print getTemplate('cart_include'); ?>,
               <?php print getTemplate('checkout_include'); ?>,
               <?php print getTemplate('receipt_include'); ?>,
-              <?php print getTemplate('email_include'); ?>
+              <?php print getTemplate('email_include'); ?>,
+                {
+                  "name": "language_overrides",
+                  "children": [
+                      {"name": "self"},
+                      {"name": "first"},
+                      {"name": "prev"},
+                      {"name": "next"},
+                      {"name": "last"},
+                      {
+                        "name": ".. { example entry } ..",
+                        "children": [
+                          {"name": "self"},
+                          {"name": "language_overrides"},
+                          {"name": "template_set"}
+                        ]
+                      }
+                  ]          
+                }              
             ]
           },       
         {
@@ -705,24 +783,6 @@ $rels = trim($rels, ",\n");
                   {"name": "store"},
                   {"name": "product_category"},
                   {"name": "downloadable_product_categories"}
-                ]
-              }
-          ]          
-        },
-        {
-          "name": "language_overrides",
-          "children": [
-              {"name": "self"},
-              {"name": "first"},
-              {"name": "prev"},
-              {"name": "next"},
-              {"name": "last"},
-              {
-                "name": ".. { example entry } ..",
-                "children": [
-                  {"name": "self"},
-                  {"name": "language_overrides"},
-                  {"name": "template_set"}
                 ]
               }
           ]          
