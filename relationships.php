@@ -172,8 +172,11 @@ function getProductCategory($multiple = false) {
                   }';
 }
 
-include '/srv/foxy/code/hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
-//include '/home/luke/code/hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
+if (strpos(__DIR__,'luke') !== false) {
+    include '/home/luke/code/hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
+} else {
+    include '/srv/foxy/code/hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
+}
 $rel_values = \FoxyCart\Services\LinkRelationsService::$rel_values;
 $rels = '{"name": "self"},' . "\n";
 foreach($rel_values as $rel => $description) {
@@ -189,19 +192,134 @@ $rels = trim($rels, ",\n");
   "name": "property_helpers", 
    "children": [
     {"name": "self"},
-    {"name": "checkout_types"},
-    {"name": "customer_password_hash_types"},
-    {"name": "default_templates"},
-    {"name": "languages"},
-    {"name": "language_strings"},
-    {"name": "locales"},
-    {"name": "payment_gateway_types"},
-    {"name": "shipping_methods"},
-    {"name": "shipping_address_types"},
-    {"name": "countries"},
-    {"name": "regions"},
-    {"name": "store_versions"},
-    {"name": "timezones"}
+    {
+        "name": "alternate_payment_methods",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+        "name": "checkout_types",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+        "name": "customer_password_hash_types",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+        "name": "default_templates",
+        "children": [
+         {"name": "self"},
+         {"name": "cart_templates"},
+         {"name": "checkout_templates"},
+         {"name": "receipt_templates"},
+         {"name": "email_templates"},
+         {"name": "property_helpers"}
+        ]        
+    },
+    {
+        "name": "languages",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+        "name": "language_strings",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+        "name": "locales",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+        "name": "payment_gateway_types",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+       "name": "shipping_methods",
+       "children": [
+          {"name": "self"},
+          {"name": "first"},
+          {"name": "prev"},
+          {"name": "next"},
+          {"name": "last"},
+          {
+           "name": ".. { example entry } ..",
+            "children": [
+             {"name": "self"},
+             {"name": "shipping_methods"},
+             {"name": "shipping_services"},
+             {"name": "shipping_containers"},
+             {"name": "shipping_drop_types"},
+             {"name": "property_helpers"}
+            ]
+          }
+       ]
+    },
+    {
+        "name": "shipping_address_types",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+        "name": "countries",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+        "name": "regions",
+        "children": [
+         {"name": "self"},
+         {"name": "countries"},
+         {"name": "property_helpers"}
+        ]
+    },
+    {
+       "name": "store_versions",
+       "children": [
+          {"name": "self"},
+          {"name": "first"},
+          {"name": "prev"},
+          {"name": "next"},
+          {"name": "last"},
+          {
+           "name": ".. { example entry } ..",
+            "children": [
+             {"name": "self"},
+             {"name": "store_versions"},
+             {"name": "property_helpers"}
+            ]
+          }
+       ]
+    },
+    {
+        "name": "timezones",
+        "children": [
+         {"name": "self"},
+         {"name": "property_helpers"}
+        ]
+    }
    ]
   },
   {
