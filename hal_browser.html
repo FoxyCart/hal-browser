@@ -25,7 +25,7 @@
           <a class="brand">FoxyCart Hypermedia API</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <!--  <li class="active"><a href="#https://admin-luke.foxycart.com/v/1.0.0/api/">Go To Root URI</a></li>  -->
+              <!-- <li class="active"><a href="https://api-development.foxycart.com/hal-browser/hal_browser.html#/">Go To Root URI</a></li> -->
               <li class="active"><a href="https://api-sandbox.foxycart.com/hal-browser/hal_browser.html#/">Go To Root URI</a></li>
               <li><a href="http://wiki.foxycart.com/v/0.0.0/hypermedia_api">Documentation</a></li>
               <li><a href="https://api-sandbox.foxycart.com/hal-browser/">Link Relationships</a></li>
@@ -45,10 +45,11 @@
               <p class="address"></p>
             </div>
           <div class="row-fluid">
+          <!-- Authorization: Bearer cae3c0c261fc71512428d612c1d2fd2a -->
             <h2>Request Headers</h2>
 <textarea name="request_headers" class="request_headers" style="width: 100%; height: 40px">
 FOXYCART-API-VERSION: 1
-Authorization: Bearer 61a7197472c9f9e4481f2d2f6a7d0352 
+Authorization: Bearer 61a7197472c9f9e4481f2d2f6a7d0352
 </textarea>
           </div>
             <div class="row-fluid" id="current-resource"></div>
@@ -89,6 +90,7 @@ Authorization: Bearer 61a7197472c9f9e4481f2d2f6a7d0352
             <option value="POST" selected="selected">POST</option>
             <option value="PUT">PUT</option>
             <option value="PATCH">PATCH</option>
+            <option value="DELETE">DELETE</option>
             <option value="OPTIONS">OPTIONS</option>
             <option value="HEAD">HEAD</option>
         </select>
@@ -277,7 +279,6 @@ Content-Type: application/json
 
   <script src="hal_browser.js"></script>
   <script>
-    //router = new HAL.Router({ entryPoint: 'https://admin-luke.foxycart.com/v/1.0.0/api/' });
     router = new HAL.Router({ entryPoint: '/' });
     Backbone.history.start();
   </script>
