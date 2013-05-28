@@ -904,6 +904,42 @@ $rels = trim($rels, ",\n");
                 ]
               }
           ]          
+        },
+        {
+          "name": "alternate_payment_methods",
+          "children": [
+              {"name": "self"},
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+                "name": ".. { example entry } ..",
+                "children": [
+                  {"name": "self"},
+                  {"name": "store"},
+                  {"name": "payment_method_sets"}
+                ]
+              }
+          ]          
+        },
+        {
+          "name": "fraud_protections",
+          "children": [
+              {"name": "self"},
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+                "name": ".. { example entry } ..",
+                "children": [
+                  {"name": "self"},
+                  {"name": "store"},
+                  {"name": "payment_method_sets"}
+                ]
+              }
+          ]          
         }
     ]
   },
