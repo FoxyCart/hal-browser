@@ -109,7 +109,7 @@ var doc_window = '';
 function showDocs(rel) {
   var nodocs = new Array('.. { example entry } ..','self','first','prev','next','last');
   if (jQuery.inArray(rel,nodocs) == -1) {
-    if (doc_window == '') {
+    if (doc_window == '' || doc_window.closed) {
       doc_window = window.open('https://api.foxycart.com/rels/'+rel,'docs','width=700,height=500,location=yes, resizable=yes, scrollbars=yes');
     } else {
       doc_window.location = 'https://api.foxycart.com/rels/'+rel;
