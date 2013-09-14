@@ -2,8 +2,8 @@
 <head>
 <meta charset="utf-8">
 <title>The FoxyCart Hypermedia API</title>
-<link rel="stylesheet" media="screen" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.19/themes/base/jquery-ui.css" />
-<link rel="stylesheet" media="screen" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.19/themes/ui-lightness/jquery-ui.css" />
+<link rel="stylesheet" media="screen" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.19/themes/base/jquery-ui.css" />
+<link rel="stylesheet" media="screen" href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.19/themes/ui-lightness/jquery-ui.css" />
 <link rel="stylesheet" media="screen" href="vendor/css/bootstrap.css" />
 <style type="text/css">
 body {
@@ -23,7 +23,9 @@ body {
 }
 
 .node text {
+  cursor: pointer;
   font-size: 11px;
+  text-decoration: underline;
 }
 
 path.link {
@@ -103,6 +105,19 @@ d3.json("relationships.php", function(json) {
   update(root);
 });
 
+var doc_window = '';
+function showDocs(rel) {
+  var nodocs = new Array('.. { example entry } ..','self','first','prev','next','last');
+  if (jQuery.inArray(rel,nodocs) == -1) {
+    if (doc_window == '') {
+      doc_window = window.open('https://api.foxycart.com/rels/'+rel,'docs','width=700,height=500,location=yes, resizable=yes, scrollbars=yes');
+    } else {
+      doc_window.location = 'https://api.foxycart.com/rels/'+rel;
+    }
+    doc_window.focus();
+  }
+}
+
 function update(source) {
   var duration = d3.event && d3.event.altKey ? 5000 : 500;
 
@@ -131,6 +146,9 @@ function update(source) {
       .attr("dy", ".35em")
       .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
       .text(function(d) { return d.name; })
+      .on('click', function (d) {
+          showDocs(d.name);
+      })
       .style("fill-opacity", 1e-6);
 
   // Transition nodes to their new position.
