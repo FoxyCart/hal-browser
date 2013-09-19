@@ -43,7 +43,7 @@ function getCoupon($multiple = false) {
                           }
                       ]
                      },
-                     {"name": "coupon_product_categories"}
+                     {"name": "coupon_item_categories"}
                    ]
                   }
         ';
@@ -133,9 +133,9 @@ function getCustomer() {
             }';
 }
 
-function getProductCategory($multiple = false) {
+function getItemCategory($multiple = false) {
          return '{
-                    "name": "' . (($multiple) ? '.. { example entry } ..' : 'product_category') . '",
+                    "name": "' . (($multiple) ? '.. { example entry } ..' : 'item_category') . '",
                     "children": [
                       {"name": "self"},
                       {"name": "store"},
@@ -153,17 +153,17 @@ function getProductCategory($multiple = false) {
                        ]
                       },
                       {
-                       "name": "tax_product_categories",
+                       "name": "tax_item_categories",
                        "children": [
                           {"name": "self"},
                           {"name": "store"},
-                          {"name": "product_category"},
+                          {"name": "item_category"},
                           {
                            "name": "tax",
                            "children": [
                               {"name": "self"},
                               {"name": "store"},
-                              {"name": "tax_product_categories"}
+                              {"name": "tax_item_categories"}
                            ]
                           }
                        ]
@@ -419,7 +419,7 @@ $rels = trim($rels, ",\n");
               <?php print getCustomer(); ?>,
               {"name": "subscription"},
               {
-               "name": "products",
+               "name": "items",
                "children": [
                 {"name": "self"},
                 {"name": "first"},
@@ -432,9 +432,9 @@ $rels = trim($rels, ",\n");
                    {"name": "self"},
                    {"name": "store"},
                    {"name": "cart"},
-                   {"name": "product_category"},
+                   {"name": "item_category"},
                    {
-                    "name": "product_options",
+                    "name": "item_options",
                     "children": [
                       {"name": "self"},
                       {"name": "first"},
@@ -447,7 +447,7 @@ $rels = trim($rels, ",\n");
                           {"name": "self"},
                           {"name": "store"},
                           {"name": "transaction"},
-                          {"name": "product"}
+                          {"name": "item"}
                        ]
                       }
                     ]
@@ -481,7 +481,7 @@ $rels = trim($rels, ",\n");
               <?php print getCustomer(); ?>,
               {"name": "subscription"},
               {
-               "name": "products",
+               "name": "items",
                "children": [
                 {"name": "self"},
                 {"name": "first"},
@@ -494,10 +494,10 @@ $rels = trim($rels, ",\n");
                    {"name": "self"},
                    {"name": "store"},
                    {"name": "transaction"},
-                   <?php print getProductCategory(); ?>,
+                   <?php print getItemCategory(); ?>,
                    {"name": "subscription"},
                    {
-                   "name": "product_options",
+                   "name": "item_options",
                    "children": [
                       {"name": "self"},
                       {"name": "first"},
@@ -510,7 +510,7 @@ $rels = trim($rels, ",\n");
                           {"name": "self"},
                           {"name": "store"},
                           {"name": "transaction"},
-                          {"name": "product"}
+                          {"name": "item"}
                        ]
                       }
                    ]
@@ -611,7 +611,7 @@ $rels = trim($rels, ",\n");
                   {"name": "self"},
                   {"name": "store"},
                   {"name": "custom_fields"},
-                  {"name": "products"},
+                  {"name": "items"},
                   {"name": "transaction"},
                   {"name": "shipments"},
                   {"name": "customer"},
@@ -669,14 +669,14 @@ $rels = trim($rels, ",\n");
         },        
         {"name": "subscription_settings"},
         {
-          "name": "product_categories",
+          "name": "item_categories",
           "children": [
               {"name": "self"},
               {"name": "first"},
               {"name": "prev"},
               {"name": "next"},
               {"name": "last"},
-              <?php print getProductCategory(true); ?>
+              <?php print getItemCategory(true); ?>
           ]
         },      
         {
@@ -692,7 +692,7 @@ $rels = trim($rels, ",\n");
                 "children": [
                   {"name": "self"},
                   {"name": "store"},
-                  {"name": "tax_product_categories"}
+                  {"name": "tax_item_categories"}
                 ]
               }        
           ]
@@ -899,8 +899,8 @@ $rels = trim($rels, ",\n");
                 "children": [
                   {"name": "self"},
                   {"name": "store"},
-                  {"name": "product_category"},
-                  {"name": "downloadable_product_categories"}
+                  {"name": "item_category"},
+                  {"name": "downloadable_item_categories"}
                 ]
               }
           ]          
