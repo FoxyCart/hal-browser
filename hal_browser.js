@@ -254,7 +254,7 @@
     },
 
     showDocs: function(e) {
-      this.$('.panel').html('<iframe src=' + e.url + '></iframe>');
+      this.$('.panel').height(500).html('<iframe src=' + e.url + '></iframe>');
     },
 
     showRawResource: function(e) {
