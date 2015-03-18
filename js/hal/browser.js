@@ -52,17 +52,9 @@ HAL.Browser = Backbone.Router.extend({
 
   resourceRoute: function() {
     url = location.hash.slice(1);
-    // check the host to avoid XSS
-    var link = document.createElement("a");
-    link.href = url;
-    if (link.hostname == window.location.hostname) {
-      if (url.slice(0,8) !== 'NON-GET:') {
-        console.log('target url changed to: ' + url);
-        HAL.client.get(url);
-      }
-    } else {
-      console.log('invalid url domain for ' + window.location.hostname + ': ' + link.hostname);
-      HAL.client.get("/");
+    console.log('target url changed to: ' + url);
+    if (url.slice(0,8) !== 'NON-GET:') {
+      HAL.client.get(url);
     }
   }
 });
