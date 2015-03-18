@@ -95,18 +95,19 @@ d3.json("relationships.php", function(json) {
   // Initialize the display to show a few nodes.
   root.children.forEach(toggleAll);
   // expand store
-  toggle(root.children[7]);
+  toggle(root.children[8]);
   // expand transactions
-  toggle(root.children[7].children[7]);
-  toggle(root.children[7].children[7].children[5]);
-  toggle(root.children[7].children[7].children[5].children[6]);
-  toggle(root.children[7].children[7].children[5].children[6].children[5]);
+  toggle(root.children[8].children[7]);
+  toggle(root.children[8].children[7].children[5]);
+  toggle(root.children[8].children[7].children[5].children[6]);
+  toggle(root.children[8].children[7].children[5].children[6].children[5]);
 
   update(root);
 });
 
 var doc_window = '';
 function showDocs(rel) {
+  rel = rel.replace('fx:','');
   var nodocs = new Array('.. { example entry } ..','self','first','prev','next','last');
   if (jQuery.inArray(rel,nodocs) == -1) {
     if (doc_window == '' || doc_window.closed) {

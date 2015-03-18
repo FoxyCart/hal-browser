@@ -1,7 +1,7 @@
 <?php
 function getAttributes($type) {
  return '{
-    "name": "attributes",
+    "name": "fx:attributes",
      "children": [
       {"name": "self"},
       {"name": "first"},
@@ -12,7 +12,7 @@ function getAttributes($type) {
       "name": ".. { example entry } ..",
       "children": [
           {"name": "self"},
-          {"name": "' . $type . '"}
+          {"name": "fx:' . $type . '"}
         ]
       }
      ]
@@ -20,12 +20,12 @@ function getAttributes($type) {
 }
 function getCoupon($multiple = false) {
     return '{
-                   "name": "' . (($multiple) ? '.. { example entry } ..' : 'coupon') . '",
+                   "name": "' . (($multiple) ? '.. { example entry } ..' : 'fx__coupon') . '",
                    "children": [
                      {"name": "self"},
-                     {"name": "store"},
+                     {"name": "fx:store"},
                      {
-                      "name": "coupon_codes",
+                      "name": "fx:coupon_codes",
                       "children": [
                           {"name": "self"},
                           {"name": "first"},
@@ -36,63 +36,63 @@ function getCoupon($multiple = false) {
                               "name": ".. { example entry } ..",
                               "children": [
                                  {"name": "self"},
-                                 {"name": "store"},
-                                 {"name": "coupon"},
-                                 {"name": "coupon_code_transactions"}
+                                 {"name": "fx:store"},
+                                 {"name": "fx:coupon"},
+                                 {"name": "fx:coupon_code_transactions"}
                               ]
                           }
                       ]
                      },
-                     {"name": "coupon_item_categories"}
+                     {"name": "fx:coupon_item_categories"}
                    ]
                   }
         ';
 }
 function getTemplate($type) {
 return '{
-               "name": "' . $type . '_template",
+               "name": "fx:' . $type . '_template",
                "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "template_sets"}
+                  {"name": "fx:store"},
+                  {"name": "fx:template_sets"}
                ]
        }';
 }
 function getCustomer() {
      return '{
-             "name": "customer",
+             "name": "fx:customer",
              "children": [
                 {"name": "self"},
                 ' . getAttributes('customer') . ',
-                {"name": "store"},
+                {"name": "fx:store"},
                 {
-                 "name": "default_billing_address",
+                 "name": "fx:default_billing_address",
                  "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "customer"},
-                  {"name": "customer_addresses"}
+                  {"name": "fx:store"},
+                  {"name": "fx:customer"},
+                  {"name": "fx:customer_addresses"}
                  ]
                 },
                 {
-                 "name": "default_shipping_address",
+                 "name": "fx:default_shipping_address",
                  "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "customer"},
-                  {"name": "customer_addresses"}
+                  {"name": "fx:store"},
+                  {"name": "fx:customer"},
+                  {"name": "fx:customer_addresses"}
                  ]
                 },
                 {
-                 "name": "default_payment_method",
+                 "name": "fx:default_payment_method",
                  "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "customer"}
+                  {"name": "fx:store"},
+                  {"name": "fx:customer"}
                  ]
                 },
                 {
-                 "name": "transactions",
+                 "name": "fx:transactions",
                   "children": [
                     {"name": "self"},
                     {"name": "first"},
@@ -102,7 +102,7 @@ function getCustomer() {
                   ]
                 },
                 {
-                    "name": "subscriptions",
+                    "name": "fx:subscriptions",
                     "children": [
                      {"name": "self"},
                      {"name": "first"},
@@ -112,7 +112,7 @@ function getCustomer() {
                     ]
                 },
                 {
-                 "name": "customer_addresses",
+                 "name": "fx:customer_addresses",
                  "children": [
                   {"name": "self"},
                   {"name": "first"},
@@ -123,8 +123,8 @@ function getCustomer() {
                     "name": ".. { example entry } ..",
                     "children": [
                        {"name": "self"},
-                       {"name": "store"},
-                       {"name": "customer"}
+                       {"name": "fx:store"},
+                       {"name": "fx:customer"}
                     ]
                   }
                  ]
@@ -135,15 +135,15 @@ function getCustomer() {
 
 function getItemCategory($multiple = false) {
          return '{
-                    "name": "' . (($multiple) ? '.. { example entry } ..' : 'item_category') . '",
+                    "name": "fx:' . (($multiple) ? '.. { example entry } ..' : 'item_category') . '",
                     "children": [
                       {"name": "self"},
-                      {"name": "store"},
-                      {"name": "downloadables"},
-                      {"name": "admin_email_template"},
-                      {"name": "customer_email_template"},
+                      {"name": "fx:store"},
+                      {"name": "fx:downloadables"},
+                      {"name": "fx:admin_email_template"},
+                      {"name": "fx:customer_email_template"},
                       {
-                       "name": "email_templates",
+                       "name": "fx:email_templates",
                        "children": [
                         {"name": "self"},
                         {"name": "first"},
@@ -153,17 +153,17 @@ function getItemCategory($multiple = false) {
                        ]
                       },
                       {
-                       "name": "tax_item_categories",
+                       "name": "fx:tax_item_categories",
                        "children": [
                           {"name": "self"},
-                          {"name": "store"},
-                          {"name": "item_category"},
+                          {"name": "fx:store"},
+                          {"name": "fx:item_category"},
                           {
-                           "name": "tax",
+                           "name": "fx:tax",
                            "children": [
                               {"name": "self"},
-                              {"name": "store"},
-                              {"name": "tax_item_categories"}
+                              {"name": "fx:store"},
+                              {"name": "fx:tax_item_categories"}
                            ]
                           }
                        ]
@@ -180,7 +180,7 @@ if (strpos(__DIR__,'luke') !== false) {
 $rel_values = \FoxyCart\Services\LinkRelationsService::$rel_values;
 $rels = '{"name": "self"},' . "\n";
 foreach($rel_values as $rel => $description) {
-    $rels .= '{"name": "' . $rel . '"},' . "\n";
+    $rels .= '{"name": "fx:' . $rel . '"},' . "\n";
 }
 $rels = trim($rels, ",\n");
 ?>
@@ -189,71 +189,71 @@ $rels = trim($rels, ",\n");
  "children": [
   {"name": "self"},
   {
-  "name": "property_helpers", 
+  "name": "fx:property_helpers", 
    "children": [
     {"name": "self"},
     {
-        "name": "alternate_payment_methods",
+        "name": "fx:alternate_payment_methods",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-        "name": "checkout_types",
+        "name": "fx:checkout_types",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-        "name": "customer_password_hash_types",
+        "name": "fx:customer_password_hash_types",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-        "name": "default_templates",
+        "name": "fx:default_templates",
         "children": [
          {"name": "self"},
-         {"name": "cart_templates"},
-         {"name": "checkout_templates"},
-         {"name": "receipt_templates"},
-         {"name": "email_templates"},
-         {"name": "property_helpers"}
+         {"name": "fx:cart_templates"},
+         {"name": "fx:checkout_templates"},
+         {"name": "fx:receipt_templates"},
+         {"name": "fx:email_templates"},
+         {"name": "fx:property_helpers"}
         ]        
     },
     {
-        "name": "languages",
+        "name": "fx:languages",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-        "name": "language_strings",
+        "name": "fx:language_strings",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-        "name": "locales",
+        "name": "fx:locales",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-        "name": "payment_gateway_types",
+        "name": "fx:payment_gateway_types",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-       "name": "shipping_methods",
+       "name": "fx:shipping_methods",
        "children": [
           {"name": "self"},
           {"name": "first"},
@@ -264,39 +264,39 @@ $rels = trim($rels, ",\n");
            "name": ".. { example entry } ..",
             "children": [
              {"name": "self"},
-             {"name": "shipping_methods"},
-             {"name": "shipping_services"},
-             {"name": "shipping_containers"},
-             {"name": "shipping_drop_types"},
-             {"name": "property_helpers"}
+             {"name": "fx:shipping_methods"},
+             {"name": "fx:shipping_services"},
+             {"name": "fx:shipping_containers"},
+             {"name": "fx:shipping_drop_types"},
+             {"name": "fx:property_helpers"}
             ]
           }
        ]
     },
     {
-        "name": "shipping_address_types",
+        "name": "fx:shipping_address_types",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-        "name": "countries",
+        "name": "fx:countries",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-        "name": "regions",
+        "name": "fx:regions",
         "children": [
          {"name": "self"},
-         {"name": "countries"},
-         {"name": "property_helpers"}
+         {"name": "fx:countries"},
+         {"name": "fx:property_helpers"}
         ]
     },
     {
-       "name": "store_versions",
+       "name": "fx:store_versions",
        "children": [
           {"name": "self"},
           {"name": "first"},
@@ -307,17 +307,17 @@ $rels = trim($rels, ",\n");
            "name": ".. { example entry } ..",
             "children": [
              {"name": "self"},
-             {"name": "store_versions"},
-             {"name": "property_helpers"}
+             {"name": "fx:store_versions"},
+             {"name": "fx:property_helpers"}
             ]
           }
        ]
     },
     {
-        "name": "timezones",
+        "name": "fx:timezones",
         "children": [
          {"name": "self"},
-         {"name": "property_helpers"}
+         {"name": "fx:property_helpers"}
         ]
     }
    ]
@@ -329,25 +329,33 @@ $rels = trim($rels, ",\n");
    ]
   },
   {
-    "name": "create_client"
+   "name": "fx:reporting",
+   "children": [
+    {"name": "self"},
+    {"name": "fx:reporting_store_domain_exists"},
+    {"name": "fx:reporting_email_exists"}
+   ]
   },
   {
-    "name": "client",
+    "name": "fx:create_client"
+  },
+  {
+    "name": "fx:client",
     "children": [
         {"name": "self"},
         <?php print getAttributes('client'); ?>
     ]
   },
   {
-    "name": "create_user"
+    "name": "fx:create_user"
   },
   {
-   "name": "user",
+   "name": "fx:user",
    "children": [
     {"name": "self"},
     <?php print getAttributes('user'); ?>,
     {
-     "name": "stores",
+     "name": "fx:stores",
      "children": [
       {"name": "self"},
       {"name": "first"},
@@ -359,13 +367,13 @@ $rels = trim($rels, ",\n");
    ]
   },
   {
-    "name": "store",
+    "name": "fx:store",
     "children": [
         {"name": "self"},
         <?php print getAttributes('store'); ?>,
-        {"name": "store_versions"},
+        {"name": "fx:store_versions"},
         {
-         "name": "users",
+         "name": "fx:users",
          "children": [
           {"name": "self"},
           {"name": "first"},
@@ -375,7 +383,7 @@ $rels = trim($rels, ",\n");
          ]
         },
         {
-        "name": "user_accesses",
+        "name": "fx:user_accesses",
          "children": [
           {"name": "self"},
           {"name": "first"},
@@ -386,14 +394,14 @@ $rels = trim($rels, ",\n");
           "name": ".. { example entry } ..",
           "children": [
               {"name": "self"},
-              {"name": "store"},
-              {"name": "user"}
+              {"name": "fx:store"},
+              {"name": "fx:user"}
             ]
           }
          ]
         },      
         {
-        "name": "customers",
+        "name": "fx:customers",
          "children": [
           {"name": "self"},
           {"name": "first"},
@@ -403,7 +411,7 @@ $rels = trim($rels, ",\n");
          ]
         },      
         {
-         "name": "carts",
+         "name": "fx:carts",
         "children": [
           {"name": "self"},
           {"name": "first"},
@@ -415,11 +423,11 @@ $rels = trim($rels, ",\n");
             "children": [
               {"name": "self"},
               <?php print getAttributes('cart'); ?>,
-              {"name": "store"},
+              {"name": "fx:store"},
               <?php print getCustomer(); ?>,
-              {"name": "subscription"},
+              {"name": "fx:subscription"},
               {
-               "name": "items",
+               "name": "fx:items",
                "children": [
                 {"name": "self"},
                 {"name": "first"},
@@ -430,11 +438,11 @@ $rels = trim($rels, ",\n");
                  "name": ".. { example entry } ..",
                  "children": [
                    {"name": "self"},
-                   {"name": "store"},
-                   {"name": "cart"},
-                   {"name": "item_category"},
+                   {"name": "fx:store"},
+                   {"name": "fx:cart"},
+                   {"name": "fx:item_category"},
                    {
-                    "name": "item_options",
+                    "name": "fx:item_options",
                     "children": [
                       {"name": "self"},
                       {"name": "first"},
@@ -445,9 +453,9 @@ $rels = trim($rels, ",\n");
                        "name": ".. { example entry } ..",
                        "children": [
                           {"name": "self"},
-                          {"name": "store"},
-                          {"name": "transaction"},
-                          {"name": "item"}
+                          {"name": "fx:store"},
+                          {"name": "fx:transaction"},
+                          {"name": "fx:item"}
                        ]
                       }
                     ]
@@ -464,7 +472,7 @@ $rels = trim($rels, ",\n");
          
         },
         {
-         "name": "transactions",
+         "name": "fx:transactions",
          "children": [
           {"name": "self"},
           {"name": "first"},
@@ -476,12 +484,12 @@ $rels = trim($rels, ",\n");
             "children": [
               {"name": "self"},
               <?php print getAttributes('transaction'); ?>,
-              {"name": "store"},
-              {"name": "receipt"},
+              {"name": "fx:store"},
+              {"name": "fx:receipt"},
               <?php print getCustomer(); ?>,
-              {"name": "subscription"},
+              {"name": "fx:subscription"},
               {
-               "name": "items",
+               "name": "fx:items",
                "children": [
                 {"name": "self"},
                 {"name": "first"},
@@ -492,12 +500,12 @@ $rels = trim($rels, ",\n");
                  "name": ".. { example entry } ..",
                  "children": [
                    {"name": "self"},
-                   {"name": "store"},
-                   {"name": "transaction"},
+                   {"name": "fx:store"},
+                   {"name": "fx:transaction"},
                    <?php print getItemCategory(); ?>,
-                   {"name": "subscription"},
+                   {"name": "fx:subscription"},
                    {
-                   "name": "item_options",
+                   "name": "fx:item_options",
                    "children": [
                       {"name": "self"},
                       {"name": "first"},
@@ -508,21 +516,21 @@ $rels = trim($rels, ",\n");
                        "name": ".. { example entry } ..",
                        "children": [
                           {"name": "self"},
-                          {"name": "store"},
-                          {"name": "transaction"},
-                          {"name": "item"}
+                          {"name": "fx:store"},
+                          {"name": "fx:transaction"},
+                          {"name": "fx:item"}
                        ]
                       }
                    ]
                   }
                 ]
               },
-              {"name": "downloadable_purchase"},
-              {"name": "shipment"}
+              {"name": "fx:downloadable_purchase"},
+              {"name": "fx:shipment"}
              ]
             },
             {
-             "name": "payments",
+             "name": "fx:payments",
              "children": [
               {"name": "self"},
               {"name": "first"},
@@ -533,14 +541,14 @@ $rels = trim($rels, ",\n");
               "name": ".. { example entry } ..",
               "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "transaction"}
+                  {"name": "fx:store"},
+                  {"name": "fx:transaction"}
                 ]
               }
              ]
             },
             {
-             "name": "applied_taxes",
+             "name": "fx:applied_taxes",
              "children": [
               {"name": "self"},
               {"name": "first"},
@@ -551,15 +559,15 @@ $rels = trim($rels, ",\n");
               "name": ".. { example entry } ..",
               "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "transaction"},
-                  {"name": "tax"}
+                  {"name": "fx:store"},
+                  {"name": "fx:transaction"},
+                  {"name": "fx:tax"}
                 ]
               }
              ]
             },
             {
-             "name": "custom_fields",
+             "name": "fx:custom_fields",
              "children": [
               {"name": "self"},
               {"name": "first"},
@@ -570,14 +578,14 @@ $rels = trim($rels, ",\n");
               "name": ".. { example entry } ..",
               "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "transaction"}
+                  {"name": "fx:store"},
+                  {"name": "fx:transaction"}
                 ]
               }
              ]
             },
             {
-             "name": "discounts",
+             "name": "fx:discounts",
              "children": [
               {"name": "self"},
               {"name": "first"},
@@ -588,17 +596,17 @@ $rels = trim($rels, ",\n");
               "name": ".. { example entry } ..",
               "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "transaction"},
-                  {"name": "customer"},
+                  {"name": "fx:store"},
+                  {"name": "fx:transaction"},
+                  {"name": "fx:customer"},
                   <?php print getCoupon(); ?>,
-                  {"name": "coupon_code"}
+                  {"name": "fx:coupon_code"}
                 ]
               }
              ]
             },
             {
-             "name": "shipments",
+             "name": "fx:shipments",
              "children": [
               {"name": "self"},
               {"name": "first"},
@@ -609,19 +617,19 @@ $rels = trim($rels, ",\n");
               "name": ".. { example entry } ..",
               "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "custom_fields"},
-                  {"name": "items"},
-                  {"name": "transaction"},
-                  {"name": "shipments"},
-                  {"name": "customer"},
-                  {"name": "customer_address"}
+                  {"name": "fx:store"},
+                  {"name": "fx:custom_fields"},
+                  {"name": "fx:items"},
+                  {"name": "fx:transaction"},
+                  {"name": "fx:shipments"},
+                  {"name": "fx:customer"},
+                  {"name": "fx:customer_address"}
                 ]
               }
              ]
             },
             {
-             "name": "billing_addresses",
+             "name": "fx:billing_addresses",
              "children": [
               {"name": "self"},
               {"name": "first"},
@@ -632,11 +640,11 @@ $rels = trim($rels, ",\n");
               "name": ".. { example entry } ..",
               "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "transaction"},
-                  {"name": "billing_addresses"},
-                  {"name": "customer"},
-                  {"name": "customer_address"}
+                  {"name": "fx:store"},
+                  {"name": "fx:transaction"},
+                  {"name": "fx:billing_addresses"},
+                  {"name": "fx:customer"},
+                  {"name": "fx:customer_address"}
                 ]
               }
              ]
@@ -646,7 +654,7 @@ $rels = trim($rels, ",\n");
         ]
        },        
         {
-          "name": "subscriptions",
+          "name": "fx:subscriptions",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -658,18 +666,18 @@ $rels = trim($rels, ",\n");
                   "children": [
                      {"name": "self"},
                    <?php print getAttributes('subscription'); ?>,
-                     {"name": "store"},
-                     {"name": "customer"},
-                     {"name": "original_transaction"},
+                     {"name": "fx:store"},
+                     {"name": "fx:customer"},
+                     {"name": "fx:original_transaction"},
                      {"name": "last_transaction"},
-                     {"name": "transaction_template"}
+                     {"name": "fx:transaction_template"}
                   ]
               }
           ]
         },        
-        {"name": "subscription_settings"},
+        {"name": "fx:subscription_settings"},
         {
-          "name": "item_categories",
+          "name": "fx:item_categories",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -680,7 +688,7 @@ $rels = trim($rels, ",\n");
           ]
         },      
         {
-          "name": "taxes",
+          "name": "fx:taxes",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -691,14 +699,14 @@ $rels = trim($rels, ",\n");
                 "name": ".. { example entry } ..",
                 "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "tax_item_categories"}
+                  {"name": "fx:store"},
+                  {"name": "fx:tax_item_categories"}
                 ]
               }        
           ]
         },
         {
-          "name": "payment_method_sets",
+          "name": "fx:payment_method_sets",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -709,18 +717,18 @@ $rels = trim($rels, ",\n");
                 "name": ".. { example entry } ..",
                 "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "payment_method_sets"},
+                  {"name": "fx:store"},
+                  {"name": "fx:payment_method_sets"},
                   {
-                    "name": "payment_gateway",
+                    "name": "fx:payment_gateway",
                     "children": [
                         {"name": "self"},
-                        {"name": "store"},
-                        {"name": "payment_method_sets"}
+                        {"name": "fx:store"},
+                        {"name": "fx:payment_method_sets"}
                     ]
                   },
                   {
-                    "name": "payment_method_set_alternate_payment_methods",
+                    "name": "fx:payment_method_set_alternate_payment_methods",
                     "children": [
                         {"name": "self"},
                         {"name": "first"},
@@ -731,14 +739,14 @@ $rels = trim($rels, ",\n");
                           "name": ".. { example entry } ..",
                           "children": [
                               {"name": "self"},
-                              {"name": "store"},
-                              {"name": "payment_method_set"},
+                              {"name": "fx:store"},
+                              {"name": "fx:payment_method_set"},
                               {
-                                "name": "alternate_payment_method",
+                                "name": "fx:alternate_payment_method",
                                 "children": [
                                   {"name": "self"},
-                                  {"name": "store"},
-                                  {"name": "payment_method_sets"}
+                                  {"name": "fx:store"},
+                                  {"name": "fx:payment_method_sets"}
                                 ]
                               }
                            ]
@@ -746,7 +754,7 @@ $rels = trim($rels, ",\n");
                     ]
                   },
                   {
-                    "name": "payment_method_set_fraud_protections",
+                    "name": "fx:payment_method_set_fraud_protections",
                     "children": [
                         {"name": "self"},
                         {"name": "first"},
@@ -757,14 +765,14 @@ $rels = trim($rels, ",\n");
                           "name": ".. { example entry } ..",
                           "children": [
                               {"name": "self"},
-                              {"name": "store"},
-                              {"name": "payment_method_set"},
+                              {"name": "fx:store"},
+                              {"name": "fx:payment_method_set"},
                               {
-                                "name": "fraud_protection",
+                                "name": "fx:fraud_protection",
                                 "children": [
                                   {"name": "self"},
-                                  {"name": "store"},
-                                  {"name": "payment_method_sets"}
+                                  {"name": "fx:store"},
+                                  {"name": "fx:payment_method_sets"}
                                 ]
                               }
                            ]
@@ -776,7 +784,7 @@ $rels = trim($rels, ",\n");
            ]
         },
         {
-          "name": "coupons",
+          "name": "fx:coupons",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -787,17 +795,17 @@ $rels = trim($rels, ",\n");
           ]
         },      
         {
-          "name": "template_sets",
+          "name": "fx:template_sets",
           "children": [
               {"name": "self"},
-              {"name": "store"},
+              {"name": "fx:store"},
               <?php print getTemplate('cart'); ?>,
               <?php print getTemplate('cart_include'); ?>,
               <?php print getTemplate('checkout_include'); ?>,
               <?php print getTemplate('receipt_include'); ?>,
               <?php print getTemplate('email_include'); ?>,
                 {
-                  "name": "language_overrides",
+                  "name": "fx:language_overrides",
                   "children": [
                       {"name": "self"},
                       {"name": "first"},
@@ -808,8 +816,8 @@ $rels = trim($rels, ",\n");
                         "name": ".. { example entry } ..",
                         "children": [
                           {"name": "self"},
-                          {"name": "language_overrides"},
-                          {"name": "template_set"}
+                          {"name": "fx:language_overrides"},
+                          {"name": "fx:template_set"}
                         ]
                       }
                   ]          
@@ -817,7 +825,7 @@ $rels = trim($rels, ",\n");
             ]
           },       
         {
-         "name": "cart_templates",
+         "name": "fx:cart_templates",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -827,7 +835,7 @@ $rels = trim($rels, ",\n");
           ]
         },
         {
-         "name": "cart_include_templates",
+         "name": "fx:cart_include_templates",
          "children": [
               {"name": "self"},
               {"name": "first"},
@@ -837,7 +845,7 @@ $rels = trim($rels, ",\n");
          ]
         },
         {
-          "name": "checkout_templates",
+          "name": "fx:checkout_templates",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -847,7 +855,7 @@ $rels = trim($rels, ",\n");
           ]          
         },
         {
-          "name": "receipt_templates",
+          "name": "fx:receipt_templates",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -857,7 +865,7 @@ $rels = trim($rels, ",\n");
           ]          
         },
         {
-          "name": "email_templates",
+          "name": "fx:email_templates",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -867,7 +875,7 @@ $rels = trim($rels, ",\n");
           ]          
         },
         {
-          "name": "error_entries",
+          "name": "fx:error_entries",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -878,16 +886,16 @@ $rels = trim($rels, ",\n");
                 "name": ".. { example entry } ..",
                 "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "customer_id"},
-                  {"name": "transaction_id"},
-                  {"name": "subscription_id"}
+                  {"name": "fx:store"},
+                  {"name": "fx:customer_id"},
+                  {"name": "fx:transaction_id"},
+                  {"name": "fx:subscription_id"}
                 ]
               }
           ]          
         },
         {
-          "name": "downloadables",
+          "name": "fx:downloadables",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -898,15 +906,15 @@ $rels = trim($rels, ",\n");
                 "name": ".. { example entry } ..",
                 "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "item_category"},
-                  {"name": "downloadable_item_categories"}
+                  {"name": "fx:store"},
+                  {"name": "fx:item_category"},
+                  {"name": "fx:downloadable_item_categories"}
                 ]
               }
           ]          
         },
         {
-          "name": "alternate_payment_methods",
+          "name": "fx:alternate_payment_methods",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -917,14 +925,14 @@ $rels = trim($rels, ",\n");
                 "name": ".. { example entry } ..",
                 "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "payment_method_sets"}
+                  {"name": "fx:store"},
+                  {"name": "fx:payment_method_sets"}
                 ]
               }
           ]          
         },
         {
-          "name": "fraud_protections",
+          "name": "fx:fraud_protections",
           "children": [
               {"name": "self"},
               {"name": "first"},
@@ -935,8 +943,8 @@ $rels = trim($rels, ",\n");
                 "name": ".. { example entry } ..",
                 "children": [
                   {"name": "self"},
-                  {"name": "store"},
-                  {"name": "payment_method_sets"}
+                  {"name": "fx:store"},
+                  {"name": "fx:payment_method_sets"}
                 ]
               }
           ]          
@@ -944,7 +952,7 @@ $rels = trim($rels, ",\n");
     ]
   },
   {
-    "name": "stores",
+    "name": "fx:stores",
     "children": [
       {"name": "self"},
       {"name": "first"},
@@ -954,7 +962,7 @@ $rels = trim($rels, ",\n");
     ]
   },
   {
-    "name": "token"
+    "name": "fx:token"
   }
  ]
 }
