@@ -354,6 +354,7 @@ $rels = trim($rels, ",\n");
    "children": [
     {"name": "self"},
     <?php print getAttributes('user'); ?>,
+    {"name": "default_store"},
     {
      "name": "fx:stores",
      "children": [
@@ -371,7 +372,7 @@ $rels = trim($rels, ",\n");
     "children": [
         {"name": "self"},
         <?php print getAttributes('store'); ?>,
-        {"name": "fx:store_versions"},
+        {"name": "fx:store_version"},
         {
          "name": "fx:users",
          "children": [
@@ -522,11 +523,11 @@ $rels = trim($rels, ",\n");
                        ]
                       }
                    ]
-                  }
+                  },
+                  {"name": "fx:downloadable_purchase"},
+                  {"name": "fx:shipment"}
                 ]
-              },
-              {"name": "fx:downloadable_purchase"},
-              {"name": "fx:shipment"}
+              }
              ]
             },
             {
@@ -669,8 +670,9 @@ $rels = trim($rels, ",\n");
                      {"name": "fx:store"},
                      {"name": "fx:customer"},
                      {"name": "fx:original_transaction"},
-                     {"name": "last_transaction"},
+                     {"name": "fx:last_transaction"},
                      {"name": "fx:transaction_template"}
+                     {"name": "fx:sub_token_url"}
                   ]
               }
           ]
@@ -702,7 +704,7 @@ $rels = trim($rels, ",\n");
                   {"name": "fx:store"},
                   {"name": "fx:tax_item_categories"}
                 ]
-              }        
+              }
           ]
         },
         {
@@ -793,37 +795,48 @@ $rels = trim($rels, ",\n");
               {"name": "last"},
               <?php print getCoupon(true); ?>
           ]
-        },      
+        },
+
         {
           "name": "fx:template_sets",
           "children": [
               {"name": "self"},
-              {"name": "fx:store"},
-              <?php print getTemplate('cart'); ?>,
-              <?php print getTemplate('cart_include'); ?>,
-              <?php print getTemplate('checkout_include'); ?>,
-              <?php print getTemplate('receipt_include'); ?>,
-              <?php print getTemplate('email_include'); ?>,
-                {
-                  "name": "fx:language_overrides",
-                  "children": [
-                      {"name": "self"},
-                      {"name": "first"},
-                      {"name": "prev"},
-                      {"name": "next"},
-                      {"name": "last"},
-                      {
-                        "name": ".. { example entry } ..",
-                        "children": [
-                          {"name": "self"},
-                          {"name": "fx:language_overrides"},
-                          {"name": "fx:template_set"}
-                        ]
-                      }
-                  ]          
-                }              
-            ]
-          },       
+              {"name": "first"},
+              {"name": "prev"},
+              {"name": "next"},
+              {"name": "last"},
+              {
+                "name": ".. { example entry } ..",
+                "children": [
+                  {"name": "self"},
+                  {"name": "fx:store"},
+                  <?php print getTemplate('cart'); ?>,
+                  <?php print getTemplate('cart_include'); ?>,
+                  <?php print getTemplate('checkout_include'); ?>,
+                  <?php print getTemplate('receipt_include'); ?>,
+                  <?php print getTemplate('email_include'); ?>,
+                  {
+                    "name": "fx:language_overrides",
+                    "children": [
+                        {"name": "self"},
+                        {"name": "first"},
+                        {"name": "prev"},
+                        {"name": "next"},
+                        {"name": "last"},
+                        {
+                          "name": ".. { example entry } ..",
+                          "children": [
+                            {"name": "self"},
+                            {"name": "fx:language_overrides"},
+                            {"name": "fx:template_set"}
+                          ]
+                        }
+                    ]
+                  }
+                ]
+              }
+          ]
+        },
         {
          "name": "fx:cart_templates",
           "children": [
