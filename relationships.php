@@ -671,7 +671,7 @@ $rels = trim($rels, ",\n");
                      {"name": "fx:customer"},
                      {"name": "fx:original_transaction"},
                      {"name": "fx:last_transaction"},
-                     {"name": "fx:transaction_template"}
+                     {"name": "fx:transaction_template"},
                      {"name": "fx:sub_token_url"}
                   ]
               }
