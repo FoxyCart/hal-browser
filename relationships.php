@@ -24,6 +24,7 @@ function getCoupon($multiple = false) {
                    "children": [
                      {"name": "self"},
                      {"name": "fx:store"},
+                     {"name": "fx:generate_codes"},
                      {
                       "name": "fx:coupon_codes",
                       "children": [
@@ -189,7 +190,7 @@ $rels = trim($rels, ",\n");
  "children": [
   {"name": "self"},
   {
-  "name": "fx:property_helpers", 
+  "name": "fx:property_helpers",
    "children": [
     {"name": "self"},
     {
@@ -222,7 +223,7 @@ $rels = trim($rels, ",\n");
          {"name": "fx:receipt_templates"},
          {"name": "fx:email_templates"},
          {"name": "fx:property_helpers"}
-        ]        
+        ]
     },
     {
         "name": "fx:languages",
@@ -400,7 +401,7 @@ $rels = trim($rels, ",\n");
             ]
           }
          ]
-        },      
+        },
         {
         "name": "fx:customers",
          "children": [
@@ -410,7 +411,7 @@ $rels = trim($rels, ",\n");
           {"name": "next"},
           {"name": "last"}
          ]
-        },      
+        },
         {
          "name": "fx:carts",
         "children": [
@@ -466,11 +467,11 @@ $rels = trim($rels, ",\n");
                 }
                ]
               }
-            ] 
+            ]
           }
         ]
-         
-         
+
+
         },
         {
          "name": "fx:transactions",
@@ -649,11 +650,11 @@ $rels = trim($rels, ",\n");
                 ]
               }
              ]
-            }            
+            }
            ]
-          }  
+          }
         ]
-       },        
+       },
         {
           "name": "fx:subscriptions",
           "children": [
@@ -676,7 +677,7 @@ $rels = trim($rels, ",\n");
                   ]
               }
           ]
-        },        
+        },
         {"name": "fx:subscription_settings"},
         {
           "name": "fx:item_categories",
@@ -688,7 +689,7 @@ $rels = trim($rels, ",\n");
               {"name": "last"},
               <?php print getItemCategory(true); ?>
           ]
-        },      
+        },
         {
           "name": "fx:taxes",
           "children": [
@@ -782,7 +783,7 @@ $rels = trim($rels, ",\n");
                     ]
                   }
                 ]
-              }        
+              }
            ]
         },
         {
@@ -865,7 +866,7 @@ $rels = trim($rels, ",\n");
               {"name": "prev"},
               {"name": "next"},
               {"name": "last"}
-          ]          
+          ]
         },
         {
           "name": "fx:receipt_templates",
@@ -875,7 +876,7 @@ $rels = trim($rels, ",\n");
               {"name": "prev"},
               {"name": "next"},
               {"name": "last"}
-          ]          
+          ]
         },
         {
           "name": "fx:email_templates",
@@ -885,7 +886,7 @@ $rels = trim($rels, ",\n");
               {"name": "prev"},
               {"name": "next"},
               {"name": "last"}
-          ]          
+          ]
         },
         {
           "name": "fx:error_entries",
@@ -905,7 +906,7 @@ $rels = trim($rels, ",\n");
                   {"name": "fx:subscription_id"}
                 ]
               }
-          ]          
+          ]
         },
         {
           "name": "fx:downloadables",
@@ -924,7 +925,7 @@ $rels = trim($rels, ",\n");
                   {"name": "fx:downloadable_item_categories"}
                 ]
               }
-          ]          
+          ]
         },
         {
           "name": "fx:alternate_payment_methods",
@@ -942,7 +943,7 @@ $rels = trim($rels, ",\n");
                   {"name": "fx:payment_method_sets"}
                 ]
               }
-          ]          
+          ]
         },
         {
           "name": "fx:fraud_protections",
@@ -960,7 +961,7 @@ $rels = trim($rels, ",\n");
                   {"name": "fx:payment_method_sets"}
                 ]
               }
-          ]          
+          ]
         }
     ]
   },
