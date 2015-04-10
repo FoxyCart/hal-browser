@@ -172,12 +172,14 @@ function getItemCategory($multiple = false) {
                     ]
                   }';
 }
-
+/*
 if (strpos(__DIR__,'luke') !== false) {
     include '/home/luke/code/hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
 } else {
     include '/srv/foxy/code/hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
 }
+*/
+include __DIR__ . '/../../hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
 $rel_values = \FoxyCart\Services\LinkRelationsService::$rel_values;
 $rels = '{"name": "self"},' . "\n";
 foreach($rel_values as $rel => $description) {
