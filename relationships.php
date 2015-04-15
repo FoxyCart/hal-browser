@@ -813,9 +813,9 @@ $rels = trim($rels, ",\n");
                   {"name": "fx:store"},
                   <?php print getTemplate('cart'); ?>,
                   <?php print getTemplate('cart_include'); ?>,
-                  <?php print getTemplate('checkout_include'); ?>,
-                  <?php print getTemplate('receipt_include'); ?>,
-                  <?php print getTemplate('email_include'); ?>,
+                  <?php print getTemplate('checkout'); ?>,
+                  <?php print getTemplate('receipt'); ?>,
+                  <?php print getTemplate('email'); ?>,
                   {
                     "name": "fx:language_overrides",
                     "children": [
