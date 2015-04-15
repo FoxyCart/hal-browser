@@ -55,7 +55,8 @@ return '{
                "children": [
                   {"name": "self"},
                   {"name": "fx:store"},
-                  {"name": "fx:template_sets"}
+                  {"name": "fx:template_sets"},
+                  {"name": "fx:cache"}
                ]
        }';
 }
