@@ -197,7 +197,7 @@ $rels = trim($rels, ",\n");
    "children": [
     {"name": "self"},
     {
-        "name": "fx:alternate_payment_methods",
+        "name": "fx:hosted_payment_gateways",
         "children": [
          {"name": "self"},
          {"name": "fx:property_helpers"}
@@ -734,7 +734,7 @@ $rels = trim($rels, ",\n");
                     ]
                   },
                   {
-                    "name": "fx:payment_method_set_alternate_payment_methods",
+                    "name": "fx:payment_method_set_hosted_payment_gateways",
                     "children": [
                         {"name": "self"},
                         {"name": "first"},
@@ -931,7 +931,7 @@ $rels = trim($rels, ",\n");
           ]
         },
         {
-          "name": "fx:alternate_payment_methods",
+          "name": "fx:hosted_payment_gateways",
           "children": [
               {"name": "self"},
               {"name": "first"},
