@@ -173,7 +173,7 @@ function getItemCategory($multiple = false) {
                     ]
                   }';
 }
-include __DIR__ . '/../../hypermedia-api/src/FoxyCart/Services/LinkRelationsService.php';
+include __DIR__ . '/../../src/FoxyCart/Services/LinkRelationsService.php';
 $rel_values = \FoxyCart\Services\LinkRelationsService::$rel_values;
 $rels = '{"name": "self"},' . "\n";
 foreach($rel_values as $rel => $description) {
